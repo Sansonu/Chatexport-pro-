@@ -1,0 +1,5 @@
+{
+  "name": "Copy of ChatExport Pro",
+  "description": "Professional tool to convert AI chat exports (ChatGPT, Claude, Grok) into formatted PDF and DOCX documents using a secure Firebase backend architecture.",
+  "requestFramePermissions": []
+}

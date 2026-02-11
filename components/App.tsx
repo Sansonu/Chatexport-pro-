@@ -92,8 +92,8 @@ export default function App() {
       {!auth.loading && (
         <footer className="bg-white border-t border-slate-200 py-8">
           <div className="max-w-7xl mx-auto px-4 text-center text-slate-400 text-sm">
-            <p>&copy; {new Date().getFullYear()} ChatExport Pro. All rights reserved.</p>
-            <p className="mt-2">Simulating Firebase Backend Architecture</p>
+            <p>&copy; {new Date().getFullYear()} LegacyDoc AI. All rights reserved.</p>
+            <p className="mt-2">AI documentation and refactor assistant for legacy codebases</p>
           </div>
         </footer>
       )}

@@ -49,7 +49,7 @@ export const DropZone: React.FC<DropZoneProps> = ({ onFileSelect, onUrlSelect, i
     
     if (!urlInput.trim()) return;
 
-    // Basic validation for Claude/ChatGPT links
+    // Basic validation for repo links
     if (!urlInput.includes('http')) {
       setError('Please enter a valid URL starting with http:// or https://');
       return;
@@ -106,11 +106,11 @@ export const DropZone: React.FC<DropZoneProps> = ({ onFileSelect, onUrlSelect, i
                 <UploadCloud className={`h-8 w-8 ${isDragOver ? 'text-blue-700' : 'text-slate-400 group-hover:text-blue-600'}`} />
               </div>
               <div className="space-y-1">
-                <p className="text-lg font-medium text-slate-700">
-                  Drop your chat export here
+              <p className="text-lg font-medium text-slate-700">
+                  Drop your legacy code files here
                 </p>
                 <p className="text-sm text-slate-500">
-                  Supports JSON, ZIP, HTML
+                  Supports ZIP, JSON manifests, and HTML docs
                 </p>
               </div>
               <div className="flex gap-2 text-xs text-slate-400 pt-2">
@@ -126,7 +126,7 @@ export const DropZone: React.FC<DropZoneProps> = ({ onFileSelect, onUrlSelect, i
       <div className="mt-6">
         <div className="relative flex items-center py-2">
           <div className="flex-grow border-t border-slate-200"></div>
-          <span className="flex-shrink-0 mx-4 text-slate-400 text-xs font-semibold uppercase tracking-wider">Or import from link</span>
+          <span className="flex-shrink-0 mx-4 text-slate-400 text-xs font-semibold uppercase tracking-wider">Or import repository link</span>
           <div className="flex-grow border-t border-slate-200"></div>
         </div>
 
@@ -141,7 +141,7 @@ export const DropZone: React.FC<DropZoneProps> = ({ onFileSelect, onUrlSelect, i
               onChange={(e) => setUrlInput(e.target.value)}
               disabled={isProcessing}
               className="block w-full pl-10 pr-3 py-2.5 border border-slate-300 rounded-lg leading-5 bg-white placeholder-slate-400 focus:outline-none focus:placeholder-slate-500 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm disabled:bg-slate-50 disabled:text-slate-500 transition-colors"
-              placeholder="https://claude.ai/share/..."
+              placeholder="https://github.com/org/legacy-repo"
             />
           </div>
           <button
@@ -153,7 +153,7 @@ export const DropZone: React.FC<DropZoneProps> = ({ onFileSelect, onUrlSelect, i
           </button>
         </form>
         <p className="mt-2 text-xs text-slate-500">
-          Supports shared links from Claude.ai and ChatGPT.com
+          Supports public repository links and internal source snapshots
         </p>
       </div>
       

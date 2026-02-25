@@ -8,6 +8,21 @@ interface RecentConversionsProps {
 }
 
 export const RecentConversions: React.FC<RecentConversionsProps> = ({ conversions, onDelete }) => {
+  const formatCreatedAt = (isoDate: string) => {
+    const date = new Date(isoDate);
+
+    if (Number.isNaN(date.getTime())) {
+      return 'Unknown date';
+    }
+
+    // Use fixed locale + timezone to keep SSR/client output consistent.
+    return new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'UTC',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    }).format(date);
+  };
   
   const getPlatformIcon = (platform: Platform) => {
     switch (platform) {
@@ -65,7 +80,7 @@ export const RecentConversions: React.FC<RecentConversionsProps> = ({ conversion
                     {getStatusBadge(conv.status)}
                   </div>
                   <div className="flex items-center gap-3 mt-1 text-xs text-slate-500">
-                    <span>{new Date(conv.createdAt).toLocaleDateString()}</span>
+                    <span>{formatCreatedAt(conv.createdAt)}</span>
                     {conv.metadata && (
                       <>
                         <span className="w-1 h-1 rounded-full bg-slate-300"></span>

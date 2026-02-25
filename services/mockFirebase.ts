@@ -39,31 +39,31 @@ let mockConversions: ConversionDocument[] = [
   {
     conversionId: 'conv_1',
     userId: 'user_12345',
-    originalFilename: 'chatgpt_export_2023.json',
+    originalFilename: 'legacy_billing_service.zip',
     platform: Platform.CHATGPT,
     status: ConversionStatus.COMPLETED,
-    inputFile: 'uploads/user_12345/chatgpt_export_2023.json',
+    inputFile: 'uploads/user_12345/legacy_billing_service.zip',
     outputFiles: {
-      pdf: createMockFileUrl('pdf', 'chatgpt_export_2023.pdf'),
-      docx: createMockFileUrl('docx', 'chatgpt_export_2023.docx')
+      pdf: createMockFileUrl('pdf', 'legacy_billing_service_report.pdf'),
+      docx: createMockFileUrl('docx', 'legacy_billing_service_report.docx')
     },
     createdAt: new Date(Date.now() - 86400000).toISOString(),
     completedAt: new Date(Date.now() - 86390000).toISOString(),
     metadata: {
-      messageCount: 45,
-      wordCount: 1250,
+      messageCount: 68,
+      wordCount: 3860,
       processingTime: 2400
     }
   },
   {
     conversionId: 'conv_2',
     userId: 'user_12345',
-    originalFilename: 'claude_history.json',
-    platform: Platform.CLAUDE,
+    originalFilename: 'inventory_monolith_dump.json',
+    platform: Platform.UNKNOWN,
     status: ConversionStatus.FAILED,
-    inputFile: 'uploads/user_12345/claude_history.json',
+    inputFile: 'uploads/user_12345/inventory_monolith_dump.json',
     createdAt: new Date(Date.now() - 172800000).toISOString(),
-    error: "Invalid JSON structure detected"
+    error: "Dependency graph extraction failed due to malformed package metadata"
   }
 ];
 
@@ -147,14 +147,13 @@ export const ConversionService = {
     });
   },
 
-  // New method to handle URL-based imports (e.g. Claude share links)
+  // New method to handle URL-based imports (e.g. repository links)
   convertFromUrl: async (url: string, userId: string, onProgress: (status: ConversionStatus) => void): Promise<ConversionDocument> => {
     const newId = `conv_url_${Date.now()}`;
     
     // Auto-detect platform from URL
     let platform = Platform.UNKNOWN;
-    if (url.includes('claude.ai')) platform = Platform.CLAUDE;
-    else if (url.includes('chatgpt.com')) platform = Platform.CHATGPT;
+    if (url.includes('github.com')) platform = Platform.UNKNOWN;
 
     const initialDoc: ConversionDocument = {
       conversionId: newId,

@@ -51,8 +51,8 @@ export const RecentConversions: React.FC<RecentConversionsProps> = ({ conversion
         <div className="mx-auto w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center mb-3">
           <Clock className="text-slate-400" />
         </div>
-        <h3 className="text-sm font-medium text-slate-900">No conversions yet</h3>
-        <p className="mt-1 text-sm text-slate-500">Upload a chat log to get started.</p>
+        <h3 className="text-sm font-medium text-slate-900">No audits yet</h3>
+        <p className="mt-1 text-sm text-slate-500">Upload a legacy code package to get started.</p>
       </div>
     );
   }
@@ -60,7 +60,7 @@ export const RecentConversions: React.FC<RecentConversionsProps> = ({ conversion
   return (
     <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
       <div className="px-6 py-4 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
-        <h2 className="text-lg font-semibold text-slate-800">Recent Conversions</h2>
+        <h2 className="text-lg font-semibold text-slate-800">Recent Code Audits</h2>
         <span className="text-xs text-slate-500 font-medium bg-white px-2 py-1 rounded border border-slate-200">
           {conversions.length} Files
         </span>

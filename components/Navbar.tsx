@@ -19,7 +19,7 @@ export const Navbar: React.FC<NavbarProps> = ({ user, onLogout, onNavigate, curr
               <div className="bg-blue-600 p-2 rounded-lg">
                 <FileText className="h-6 w-6 text-white" />
               </div>
-              <span className="font-bold text-xl text-slate-800 tracking-tight">ChatExport Pro</span>
+              <span className="font-bold text-xl text-slate-800 tracking-tight">LegacyDoc AI</span>
             </div>
           </div>
 

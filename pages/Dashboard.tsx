@@ -16,7 +16,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ user }) => {
   const [loading, setLoading] = useState(true);
   const [processingStatus, setProcessingStatus] = useState<ConversionStatus | null>(null);
 
-  // Gemini Integration for "Smart Analysis" (Bonus Feature)
+  // Gemini Integration for "Legacy Code Analysis"
   const [aiAnalysis, setAiAnalysis] = useState<string | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
 
@@ -78,7 +78,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ user }) => {
 
   const runGeminiAnalysis = async () => {
     if(!process.env.API_KEY) {
-        setAiAnalysis("Demo Mode: API Key not configured in environment. In a real deployment, this would use Gemini 2.5 Flash to summarize your chat history.");
+        setAiAnalysis("Demo Mode: API Key not configured in environment. In production, this would generate architecture docs and refactor recommendations for your uploaded codebase.");
         return;
     }
 
@@ -86,10 +86,10 @@ export const Dashboard: React.FC<DashboardProps> = ({ user }) => {
     try {
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       const model = 'gemini-2.5-flash';
-      // Simulating analyzing the last converted file content
+      // Simulating analysis of a legacy codebase snapshot
       const response = await ai.models.generateContent({
         model,
-        contents: "Summarize the key topics from a hypothetical tech support chat log involving a user asking about React hooks and Firebase.",
+        contents: "Analyze a legacy monolith and provide a concise system overview, top technical debt issues, and safe refactor suggestions.",
       });
       setAiAnalysis(response.text);
     } catch (e) {
@@ -105,7 +105,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ user }) => {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `analysis_summary.${format === 'pdf' ? 'pdf' : 'docx'}`; // Note: This will download a text file named as pdf/docx for demo purposes
+    a.download = `legacy_code_report.${format === 'pdf' ? 'pdf' : 'docx'}`; // Note: This downloads a plain-text mock report named as pdf/docx for demo purposes
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -119,7 +119,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ user }) => {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold text-slate-900">Dashboard</h1>
-          <p className="text-slate-500">Manage your chat exports and conversions</p>
+          <p className="text-slate-500">Manage code audits, generated docs, and modernization suggestions</p>
         </div>
         <div className="flex gap-3">
             <div className="bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1 border border-emerald-100">
@@ -133,7 +133,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ user }) => {
 
       {/* Upload Section */}
       <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-        <h2 className="text-lg font-semibold text-slate-800 mb-4">New Conversion</h2>
+        <h2 className="text-lg font-semibold text-slate-800 mb-4">New Legacy Audit</h2>
         <DropZone 
           onFileSelect={handleFileSelect} 
           onUrlSelect={handleUrlSelect}
@@ -158,10 +158,10 @@ export const Dashboard: React.FC<DashboardProps> = ({ user }) => {
           <div>
              <div className="flex items-center gap-2 mb-2">
                 <Sparkles className="text-yellow-300" size={20} />
-                <h3 className="font-bold text-lg">AI Insight Analysis</h3>
+                <h3 className="font-bold text-lg">AI Legacy Code Insights</h3>
              </div>
              <p className="text-indigo-100 text-sm max-w-xl">
-               Use Google Gemini to generate an executive summary of your chat exports automatically.
+               Use Google Gemini to generate architecture documentation and refactor recommendations automatically.
              </p>
           </div>
           <button 
@@ -169,7 +169,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ user }) => {
             disabled={isAnalyzing}
             className="bg-white text-indigo-600 px-4 py-2 rounded-lg font-semibold text-sm hover:bg-indigo-50 transition-colors shadow-md whitespace-nowrap"
           >
-            {isAnalyzing ? 'Analyzing...' : 'Test Analysis'}
+            {isAnalyzing ? 'Analyzing...' : 'Generate Insights'}
           </button>
         </div>
         
